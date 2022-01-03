@@ -7,3 +7,4 @@ Spring Data Jpa Practice(2nd) Example
     1. Member, Team 도메인 설정 및 MemberTest 작성
 + Ch03. INTERFACE
     1. 순수JPA 기반 (MemberJpaRepository) 구현
+    2. 공통 인터페이스 설정 및 적용(MemberRepository)

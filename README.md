@@ -8,3 +8,5 @@ Spring Data Jpa Practice(2nd) Example
 + Ch03. INTERFACE
     1. 순수JPA 기반 (MemberJpaRepository) 구현
     2. 공통 인터페이스 설정 및 적용(MemberRepository)
++ Ch04. Query Method
+    1. 메소드 이름으로 쿼리 생성

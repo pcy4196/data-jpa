@@ -7,6 +7,10 @@ import javax.persistence.*;
 @Getter @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED) // 생성자
 @ToString(of = {"id", "username", "age"})
+@NamedQuery(
+        name = "Member.findByusername",
+        query = "select m from Member m where m.username = :username"
+) // NamedQuery 장점 : WAS 시동시 버그를 SEARCH 가능
 public class Member {
 
     @Id @GeneratedValue

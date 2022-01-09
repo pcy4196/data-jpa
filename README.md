@@ -11,3 +11,4 @@ Spring Data Jpa Practice(2nd) Example
 + Ch04. Query Method
     1. 메소드 이름으로 쿼리 생성
     2. JPA NamedQuery
+    3. @Query, 리포지토리 메소드에 쿼리 정의(JPQL)

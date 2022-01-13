@@ -14,3 +14,4 @@ Spring Data Jpa Practice(2nd) Example
     3. @Query, 리포지토리 메소드에 쿼리 정의(JPQL)
     4. @Query, LIST 및 DTO 값 조회
     5. 파라미터 바인딩
+    6. 반환타입 (Optional, Collection 등)

@@ -10,6 +10,7 @@ import study.datajpa.entity.Team;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -146,5 +147,20 @@ class MemberRepositoryTest {
         for (Member member : result) {
             System.out.println("memeber = " + member);
         }
+    }
+
+    @Test
+    public void returnType() {
+        Member m1 = new Member("AAA", 10);
+        Member m2 = new Member("BBB", 20);
+        memberRepository.save(m1);
+        memberRepository.save(m2);
+
+        List<Member> aaa = memberRepository.findListByusername("AAA");
+        Member bbb = memberRepository.findMemberByusername("AAA");
+        System.out.println("bbb = " + bbb);
+        // JAVA 8 이후에 나온 개념 :: null 문제를 해결하기 위해서 나온 이론
+        Optional<Member> ccc = memberRepository.findOptionalByusername("AAA");
+        System.out.println("ccc = " + ccc);
     }
 }

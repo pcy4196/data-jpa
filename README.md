@@ -15,3 +15,4 @@ Spring Data Jpa Practice(2nd) Example
     4. @Query, LIST 및 DTO 값 조회
     5. 파라미터 바인딩
     6. 반환타입 (Optional, Collection 등)
+    7. 순수 JPA 페이징과 정렬

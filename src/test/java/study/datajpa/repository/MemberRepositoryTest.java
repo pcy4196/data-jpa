@@ -12,6 +12,8 @@ import study.datajpa.dto.MemberDto;
 import study.datajpa.entity.Member;
 import study.datajpa.entity.Team;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -26,6 +28,8 @@ class MemberRepositoryTest {
     MemberRepository memberRepository;
     @Autowired
     TeamRepository teamRepository;
+    @PersistenceContext
+    EntityManager em;
 
     @Test
     public void testMember() {
@@ -203,5 +207,31 @@ class MemberRepositoryTest {
 
         // API로 반환 가능 --> DTO로 변환 해서 반환해야 한다.
         Page<MemberDto> toMap = page.map(member -> new MemberDto(member.getId(), member.getUsername(), null));
+    }
+
+    @Test
+    public void bulkUpdate() {
+        // given
+        memberRepository.save(new Member("member1", 10));
+        memberRepository.save(new Member("member2", 19));
+        memberRepository.save(new Member("member3", 20));
+        memberRepository.save(new Member("member4", 21));
+        memberRepository.save(new Member("member5", 40));
+
+        // when
+        int resultCnt = memberRepository.bulkAgePlus(20);
+        // 1. 부득이하게 영속성 컨텍스트에 엔티티가 있으면 벌크 연산 직후 영속성 컨텍스트를 초기화 한다.
+//        em.flush();
+//        em.clear();
+        // 2. @Modifying(clearAutomatically = true)
+
+        // 벌크 연산은 영속성 컨텍스트를 무시하고 실행하기 때문에, 영속성 컨텍스트에 있는
+        // 엔티티의 상태와 DB에 엔티티 상태가 달라질 수 있다.
+        List<Member> result = memberRepository.findByusername("member5");
+        Member member5 = result.get(0);
+        System.out.println("member5 : " + member5);
+
+        // then
+        assertThat(resultCnt).isEqualTo(3);
     }
 }

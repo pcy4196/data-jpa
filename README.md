@@ -17,3 +17,4 @@ Spring Data Jpa Practice(2nd) Example
     6. 반환타입 (Optional, Collection 등)
     7. 순수 JPA 페이징과 정렬
     8. 스프링 데이터 JPA 페이징과 정렬
+    9. 벌크성 수정 쿼리

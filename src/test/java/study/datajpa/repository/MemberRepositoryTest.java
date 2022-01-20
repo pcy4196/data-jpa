@@ -234,4 +234,76 @@ class MemberRepositoryTest {
         // then
         assertThat(resultCnt).isEqualTo(3);
     }
+
+    @Test
+    public void findMemberLazy() {
+        // given
+        // memberA -> teamA
+        // memberAB-> teamB
+        Team teamA = new Team("teamA");
+        Team teamB = new Team("teamB");
+        teamRepository.save(teamA);
+        teamRepository.save(teamB);
+
+        Member member1 = new Member("member1", 10, teamA);
+        Member member2 = new Member("member2", 10, teamB);
+        memberRepository.save(member1);
+        memberRepository.save(member2);
+
+        em.flush();
+        em.clear();
+
+//        // when N + 1 (fetch = FetchType.LAZY) 의 문제
+//        // select Member 1
+//        List<Member> members = memberRepository.findAll();
+//        for (Member member : members) {
+//            System.out.println("memeber = " + member.getUsername());
+//            // team = class study.datajpa.entity.Team$HibernateProxy$5A991NHd --> 가짜 객체를 만들어둔다
+//            System.out.println("team = " + member.getTeam().getClass());
+//            // select Team
+//            System.out.println("team = " + member.getTeam().getName());
+//        }
+
+        List<Member> members = memberRepository.findMemberFetchJoin();
+        for (Member member : members) {
+            System.out.println("memeber = " + member.getUsername());
+            System.out.println("team = " + member.getTeam().getClass());
+            System.out.println("team = " + member.getTeam().getName());
+        }
+    }
+
+    @Test
+    public void findMemberEntityGraph() {
+        // given
+        // memberA -> teamA
+        // memberAB-> teamB
+        Team teamA = new Team("teamA");
+        Team teamB = new Team("teamB");
+        teamRepository.save(teamA);
+        teamRepository.save(teamB);
+
+        Member member1 = new Member("member1", 10, teamA);
+        Member member2 = new Member("member2", 10, teamB);
+        memberRepository.save(member1);
+        memberRepository.save(member2);
+
+        em.flush();
+        em.clear();
+
+        // when
+//        List<Member> members = memberRepository.findAll();
+//        for (Member member : members) {
+//            System.out.println("memeber = " + member.getUsername());
+//            System.out.println("team = " + member.getTeam().getClass());
+//            System.out.println("team = " + member.getTeam().getName());
+//        }
+
+        // when
+        List<Member> members = memberRepository.findEntityGraphByusername("member1");
+        for (Member member : members) {
+            System.out.println("memeber = " + member.getUsername());
+            System.out.println("team = " + member.getTeam().getClass());
+            System.out.println("team = " + member.getTeam().getName());
+        }
+    }
 }

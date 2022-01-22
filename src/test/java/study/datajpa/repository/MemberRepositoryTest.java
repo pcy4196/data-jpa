@@ -306,4 +306,42 @@ class MemberRepositoryTest {
             System.out.println("team = " + member.getTeam().getName());
         }
     }
+
+    @Test
+    public void queryHint() {
+        // given
+        Member member1 = memberRepository.save(new Member("member1", 10));
+        em.flush();
+        em.clear();
+
+        // when
+        Member findMember = memberRepository.findReadOnlyByUsername(member1.getUsername());
+        findMember.setUsername("member2"); // readOnly 로 조회 했기때문에 update 쿼리 x
+
+        em.flush();
+    }
+
+    @Test
+    public void queryLock() {
+        // given
+        Member member1 = memberRepository.save(new Member("member1", 10));
+        em.flush();
+        em.clear();
+
+        // when
+        List<Member> findMembers = memberRepository.findLockByUsername(member1.getUsername());
+
+        //  select
+        //        member0_.member_id as member_i1_0_,
+        //        member0_.age as age2_0_,
+        //        member0_.team_id as team_id4_0_,
+        //        member0_.username as username3_0_
+        //    from
+        //        member member0_
+        //    where
+        //        member0_.username=? for update
+        //
+
+        em.flush();
+    }
 }

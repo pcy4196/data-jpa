@@ -20,3 +20,5 @@ Spring Data Jpa Practice(2nd) Example
     9. 벌크성 수정 쿼리
     10. @EntityGraph
     11. JPA hint & Lock
++ Ch05. 확장 기능
+    1. 사용자 정의 리포지토리 구현

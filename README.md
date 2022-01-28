@@ -22,3 +22,4 @@ Spring Data Jpa Practice(2nd) Example
     11. JPA hint & Lock
 + Ch05. 확장 기능
     1. 사용자 정의 리포지토리 구현
+    2. Auditing

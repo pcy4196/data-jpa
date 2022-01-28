@@ -12,7 +12,7 @@ import javax.persistence.*;
         query = "select m from Member m where m.username = :username"
 ) // NamedQuery 장점 : WAS 시동시 버그를 SEARCH 가능
 @NamedEntityGraph(name = "Member.all", attributeNodes = @NamedAttributeNode("team"))
-public class Member {
+public class Member extends JpaBaseEntity {
 
     @Id @GeneratedValue
     @Column(name = "member_id")

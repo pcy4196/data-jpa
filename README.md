@@ -23,4 +23,5 @@ Spring Data Jpa Practice(2nd) Example
 + Ch05. 확장 기능
     1. 사용자 정의 리포지토리 구현
     2. Auditing
-    3. 도메인 클래스 컨버터
+    3. Web 확장 - 도메인 클래스 컨버터
+    4. Web 확장 - 페이징과 정렬

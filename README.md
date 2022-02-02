@@ -28,3 +28,4 @@ Spring Data Jpa Practice(2nd) Example
     5. 새로운 엔티티 구분(String --> Persistable<String>)
 + Ch06. 확장 기능
     1. Specifications (명세)
+    2. Query By Example

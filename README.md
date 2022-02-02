@@ -25,4 +25,4 @@ Spring Data Jpa Practice(2nd) Example
     2. Auditing
     3. Web 확장 - 도메인 클래스 컨버터
     4. Web 확장 - 페이징과 정렬
-    5. 새로운 엔티티 구분(String --> Persistable<String>)
+    5. 새로운 엔티티 구분(String --> Persistable<String>) -- TEST

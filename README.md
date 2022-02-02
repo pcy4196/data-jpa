@@ -6,7 +6,7 @@ Spring Data Jpa Practice(2nd) Example
 + Ch02. DOMAIN
     1. Member, Team 도메인 설정 및 MemberTest 작성
 + Ch03. INTERFACE
-    1. 순수JPA 기반 (MemberJpaRepository) 구현
+    1. 순수 JPA 기반 (MemberJpaRepository) 구현
     2. 공통 인터페이스 설정 및 적용(MemberRepository)
 + Ch04. Query Method
     1. 메소드 이름으로 쿼리 생성
@@ -26,3 +26,5 @@ Spring Data Jpa Practice(2nd) Example
     3. Web 확장 - 도메인 클래스 컨버터
     4. Web 확장 - 페이징과 정렬
     5. 새로운 엔티티 구분(String --> Persistable<String>)
++ Ch06. 확장 기능
+    1. Specifications (명세)

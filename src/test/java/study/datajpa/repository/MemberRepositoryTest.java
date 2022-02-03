@@ -437,7 +437,7 @@ class MemberRepositoryTest {
 
         for (NestedClosedProjections nestedClosedProjections : result2) {
             System.out.println("nestedClosedProjections.getUsername() = " + nestedClosedProjections.getUsername());
-            System.out.println("nestedClosedProjections.getTeam() = " + nestedClosedProjections.getTeam());
+            System.out.println("nestedClosedProjections.getTeam().getName() = " + nestedClosedProjections.getTeam().getName());
         }
 
     }

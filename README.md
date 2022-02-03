@@ -29,3 +29,4 @@ Spring Data Jpa Practice(2nd) Example
 + Ch06. 확장 기능
     1. Specifications (명세)
     2. Query By Example
+    3. Projections

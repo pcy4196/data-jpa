@@ -401,5 +401,45 @@ class MemberRepositoryTest {
         assertThat(result.get(0).getUsername()).isEqualTo("m1");
     }
 
+    @Test
+    public void projections() {
+        // given
+        Team teamA = new Team("teamA");
+        em.persist(teamA);
+
+        Member m1 = new Member("m1", 0 , teamA);
+        Member m2 = new Member("m2", 0 , teamA);
+
+        em.persist(m1);
+        em.persist(m2);
+
+        em.flush();
+        em.clear();
+
+        // when
+        List<UsernameOnly> result = memberRepository.findProjectionsByusername("m1");
+        // close Projections(@Value("#{target.username + ' ' + target.age}") 주석 처리
+        // select member0_.username as col_0_0_ from member member0_ where member0_.username='m1';
+        // open Projections
+        // select member0_.member_id as member_i1_1_, member0_.created_date as created_2_1_, member0_.last_modified_date as last_mod3_1_, member0_.created_by as created_4_1_, member0_.last_modified_by as last_mod5_1_, member0_.age as age6_1_, member0_.team_id as team_id8_1_, member0_.username as username7_1_ from member member0_ where member0_.username='m1';
+        for (UsernameOnly usernameOnly : result) {
+            System.out.println("usernameOnly = " + usernameOnly.getUsername());
+        }
+
+        List<UsernameOnlyDto> result1 = memberRepository.findProjectionsDtoByusername("m1");
+
+        for (UsernameOnlyDto usernameOnlyDto : result1) {
+            System.out.println("usernameOnlyDto = " + usernameOnlyDto.getUsername());
+        }
+
+
+        List<NestedClosedProjections> result2 = memberRepository.findProjectionsByUsername("m1", NestedClosedProjections.class);
+
+        for (NestedClosedProjections nestedClosedProjections : result2) {
+            System.out.println("nestedClosedProjections.getUsername() = " + nestedClosedProjections.getUsername());
+            System.out.println("nestedClosedProjections.getTeam() = " + nestedClosedProjections.getTeam());
+        }
+
+    }
 }
 

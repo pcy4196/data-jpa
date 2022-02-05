@@ -30,3 +30,4 @@ Spring Data Jpa Practice(2nd) Example
     1. Specifications (명세)
     2. Query By Example
     3. Projections
+    4. 네이티브 쿼리
